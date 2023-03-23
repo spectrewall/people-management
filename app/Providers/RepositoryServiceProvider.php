@@ -26,5 +26,6 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->singleton(\App\Repository\Interfaces\UserRepositoryInterface::class, \App\Repository\UserRepository::class);
         $this->app->singleton(\App\Repository\Interfaces\AddressRepositoryInterface::class, \App\Repository\AddressRepository::class);
+        $this->app->singleton(\App\Repository\Interfaces\PersonRepositoryInterface::class, \App\Repository\PersonRepository::class);
     }
 }
