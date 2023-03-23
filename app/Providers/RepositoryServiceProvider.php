@@ -20,9 +20,11 @@ class RepositoryServiceProvider extends ServiceProvider
      * Bootstrap services.
      *
      * @return void
+     * @noinspection PhpFullyQualifiedNameUsageInspection
      */
     public function boot(): void
     {
-        //
+        $this->app->singleton(\App\Repository\Interfaces\UserRepositoryInterface::class, \App\Repository\UserRepository::class);
+        $this->app->singleton(\App\Repository\Interfaces\AddressRepositoryInterface::class, \App\Repository\AddressRepository::class);
     }
 }
