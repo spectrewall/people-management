@@ -1,0 +1,26 @@
+<?php
+
+namespace App\Repository;
+
+use App\Repository\Interfaces\BaseRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+
+abstract class BaseRepository implements BaseRepositoryInterface
+{
+    /** @var Model $model */
+    protected Model $model;
+
+    /**
+     * @param Model $model
+     */
+    public function __construct(Model $model)
+    {
+        $this->model = $model;
+    }
+
+    public function all(): Collection
+    {
+        return $this->model->all();
+    }
+}
