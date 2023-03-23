@@ -16,7 +16,7 @@ class Address extends Model
         'number',
     ];
 
-    public function rules(): array
+    public static function rules(): array
     {
         return [
             'street' => 'string|max:255|min:3',
