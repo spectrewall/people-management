@@ -2,9 +2,11 @@ import './bootstrap';
 import 'datatables.net-dt/css/jquery.dataTables.css';
 import DataTable from 'datatables.net-dt';
 import Alpine from 'alpinejs';
+import jQuery from 'jquery';
+import 'jquery-mask-plugin';
 
+window.$ = jQuery;
 window.Alpine = Alpine;
-
 Alpine.start();
 
 new DataTable('.datatable', {
