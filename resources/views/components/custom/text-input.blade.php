@@ -8,6 +8,7 @@
     'label',
     'id',
     'name',
+    'errorName' => $name
 ])
 
 @isset ($label)
@@ -29,8 +30,8 @@
     value="{{ $value }}"
 >
 
-@if (isset($errors) && $errors->has($name))
+@if (isset($errors) && $errors->has($errorName))
     @component('components.input-error', [
-        'messages' => $errors->first($name)
+        'messages' => $errors->first($errorName)
     ]) @endcomponent
 @endif
