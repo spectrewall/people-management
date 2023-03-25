@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PersonController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,10 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
+
+    // Person
+    Route::get('/pessoas', [PersonController::class, 'index'])->name('pessoa.index');
+    Route::resource('pessoa', PersonController::class)->except(['index']);
 });
 
 Route::middleware('auth')->group(function () {
