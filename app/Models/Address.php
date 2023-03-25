@@ -42,10 +42,10 @@ class Address extends Model
     public static function rules(): array
     {
         return [
-            'street' => 'string|max:255|min:3',
-            'city' => 'string|max:255|min:3',
-            'state' => 'string|size:2',
-            'number' => 'string|max:10',
+            'street' => ['string', 'max:255', 'min:3', 'required'],
+            'city' => ['string', 'max:255', 'min:3', 'required'],
+            'state' => ['string', 'size:2', 'required'],
+            'number' => ['string', 'max:10', 'nullable'],
         ];
     }
 }
