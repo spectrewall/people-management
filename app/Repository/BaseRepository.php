@@ -41,12 +41,19 @@ abstract class BaseRepository implements BaseRepositoryInterface
 
     public function update(array $attributes, int|string|Model $modelOrId): Model
     {
-        $model = $modelOrId instanceof Model ?
-            $modelOrId :
-            $this->model->newQuery()->findOrFail(intval($modelOrId));
+        $model = $modelOrId instanceof Model ? $modelOrId :
+            $this->findOrFail(intval($modelOrId));
 
         $fillableAttributes = Arr::only($attributes, $this->model->getFillable());
         $model->update($fillableAttributes);
         return $model->fresh();
+    }
+
+    public function destroy(int|string|Model $modelOrId): ?bool
+    {
+        $model = $modelOrId instanceof Model ? $modelOrId :
+            $this->findOrFail(intval($modelOrId));
+
+        return $model->delete();
     }
 }

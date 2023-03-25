@@ -38,4 +38,12 @@ interface BaseRepositoryInterface
      * @return Model
      */
     public function update(array $attributes, int|string|Model $modelOrId): Model;
+
+    /**
+     * Deletes a model from the database.
+     *
+     * @param int|string|Model $modelOrId
+     * @return bool|null
+     */
+    public function destroy(int|string|Model $modelOrId): ?bool;
 }
