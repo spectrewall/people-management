@@ -34,11 +34,12 @@
                                             icon="edit"/>
 
                                         <!-- Delete Button -->
-                                        <button type="button" title="Excluir"
-                                                data-route="{{ route('person.destroy', $person->id) }}"
-                                                class="btn btn-danger">
-                                            <i class="material-symbols-outlined">close</i>
-                                        </button>
+                                        <x-custom.material-icon-request-button
+                                            :href="route('person.destroy', $person->id)"
+                                            method="DELETE"
+                                            id="button-delete-{{ $person->id }}"
+                                            title="Excluir"
+                                            icon="close"/>
                                     </td>
                                 </tr>
                             @endforeach
