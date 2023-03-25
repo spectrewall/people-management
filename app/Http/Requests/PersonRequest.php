@@ -72,21 +72,10 @@ class PersonRequest extends FormRequest
     protected function getValidatorInstance(): Validator
     {
         $this->merge([
-            'phone' => self::onlyNumbers($this->input('phone')),
-            'cpf' => self::onlyNumbers($this->input('cpf'))
+            'phone' => only_numbers($this->input('phone')),
+            'cpf' => only_numbers($this->input('cpf'))
         ]);
 
         return parent::getValidatorInstance();
-    }
-
-    /**
-     * Returns only the numbers from a string.
-     *
-     * @param string $string
-     * @return string
-     */
-    private static function onlyNumbers(string $string): string
-    {
-        return preg_replace('/\D+/', '', $string);
     }
 }
