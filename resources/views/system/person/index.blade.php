@@ -28,11 +28,10 @@
                                     <td>{{ $person->email }}</td>
                                     <td>
                                         <!-- Edit button -->
-                                        <a href="{{ route('person.edit', $person->id) }}">
-                                            <button type="button" title="Editar" class="btn btn-warning">
-                                                <i class="material-symbols-outlined" style="color: white">edit</i>
-                                            </button>
-                                        </a>
+                                        <x-custom.material-icon-redirect-button
+                                            :href="route('person.edit', $person->id)"
+                                            icon="edit"/>
+
                                         <!-- Delete Button -->
                                         <button type="button" title="Excluir"
                                                 data-route="{{ route('person.destroy', $person->id) }}"
