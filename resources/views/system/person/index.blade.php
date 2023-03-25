@@ -1,6 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"> Pessoas </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"> Pessoas </h2>
+            <x-custom.redirect-button :href="route('person.create')" text="Nova Pessoa" />
+        </div>
     </x-slot>
 
     <div class="py-12">
