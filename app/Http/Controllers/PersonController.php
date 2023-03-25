@@ -36,10 +36,15 @@ class PersonController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     *
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('system.person.crud', [
+            'titleVerb' => 'Cadastrar',
+            'formAction' => route('person.store')
+        ]);
     }
 
     /**
@@ -60,6 +65,9 @@ class PersonController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     *
+     * @param int $id
+     * @return View
      */
     public function edit(int $id): View
     {
