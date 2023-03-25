@@ -23,4 +23,9 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         return $this->model->all();
     }
+
+    public function findOrFail(int $id): Model
+    {
+        return $this->model->newQuery()->findOrFail($id);
+    }
 }
