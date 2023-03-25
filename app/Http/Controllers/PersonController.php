@@ -4,10 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PersonRequest;
 use App\Models\Person;
+use App\Repository\Interfaces\PersonRepositoryInterface;
 use Illuminate\Contracts\View\View;
 
 class PersonController extends Controller
 {
+    /**
+     * @param PersonRepositoryInterface $personRepository
+     */
+    public function __construct(
+        private readonly PersonRepositoryInterface $personRepository
+    ) {
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +25,7 @@ class PersonController extends Controller
     public function index(): View
     {
         return view('system.person.index', [
-            'people' => Person::all(),
+            'people' => $this->personRepository->all(),
         ]);
     }
 
