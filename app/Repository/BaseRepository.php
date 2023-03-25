@@ -30,6 +30,15 @@ abstract class BaseRepository implements BaseRepositoryInterface
         return $this->model->newQuery()->findOrFail($id);
     }
 
+    public function create(array $attributes): Model
+    {
+        $fillableAttributes = Arr::only($attributes, $this->model->getFillable());
+
+        return $this->model->newQuery()
+            ->create($fillableAttributes)
+            ->fresh();
+    }
+
     public function update(array $attributes, int|string|Model $modelOrId): Model
     {
         $model = $modelOrId instanceof Model ?

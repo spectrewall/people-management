@@ -23,6 +23,14 @@ interface BaseRepositoryInterface
     public function findOrFail(int $id): Model;
 
     /**
+     * Creates a new model in the database.
+     *
+     * @param array $attributes
+     * @return Model
+     */
+    public function create(array $attributes): Model;
+
+    /**
      * Updates a model in the database.
      *
      * @param array $attributes
