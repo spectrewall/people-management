@@ -93,7 +93,10 @@
                             :value="old('address.number') ?? $person->address->number ?? null"
                             :errors="$errors"/>
 
-                        <x-custom.submit-button style="display: block"/>
+                        <div style="display: block">
+                            <x-custom.redirect-button :href="route('person.index')"/>
+                            <x-custom.submit-button/>
+                        </div>
 
                     </form>
                 </div>
