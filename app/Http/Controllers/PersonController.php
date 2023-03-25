@@ -61,7 +61,7 @@ class PersonController extends Controller
         return view('system.person.crud', [
             'titleVerb' => 'Editar',
             'formAction' => route('person.update', $id),
-            'person' => Person::find($id),
+            'person' => $this->personRepository->findOrFail($id),
         ]);
     }
 
