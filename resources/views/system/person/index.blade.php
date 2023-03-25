@@ -30,6 +30,7 @@
                                         <!-- Edit button -->
                                         <x-custom.material-icon-redirect-button
                                             :href="route('person.edit', $person->id)"
+                                            title="Editar"
                                             icon="edit"/>
 
                                         <!-- Delete Button -->
