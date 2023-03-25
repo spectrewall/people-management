@@ -28,6 +28,7 @@
     type="{{ $type }}"
     aria-required="{{ $ariaRequired ? 'true' : 'false' }}"
     value="{{ $value }}"
+    style="margin-bottom: 10px"
 >
 
 @if (isset($errors) && $errors->has($errorName))
