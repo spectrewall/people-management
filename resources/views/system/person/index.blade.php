@@ -25,14 +25,14 @@
                                     <td>{{ $person->email }}</td>
                                     <td>
                                         <!-- Edit button -->
-                                        <a href="{{ route('pessoa.edit', $person->id) }}">
+                                        <a href="{{ route('person.edit', $person->id) }}">
                                             <button type="button" title="Editar" class="btn btn-warning">
                                                 <i class="material-symbols-outlined" style="color: white">edit</i>
                                             </button>
                                         </a>
                                         <!-- Delete Button -->
                                         <button type="button" title="Excluir"
-                                                data-route="{{ route('pessoa.destroy', $person->id) }}"
+                                                data-route="{{ route('person.destroy', $person->id) }}"
                                                 class="btn btn-danger">
                                             <i class="material-symbols-outlined">close</i>
                                         </button>

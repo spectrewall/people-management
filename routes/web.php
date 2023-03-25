@@ -23,8 +23,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
 
     // Person
-    Route::get('/pessoas', [PersonController::class, 'index'])->name('pessoa.index');
-    Route::resource('pessoa', PersonController::class)->except(['index']);
+    Route::get('/pessoas', [PersonController::class, 'index'])->name('person.index');
+    Route::resource('pessoa', PersonController::class)->except(['index'])->names('person');
 });
 
 Route::middleware('auth')->group(function () {
