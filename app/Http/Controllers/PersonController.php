@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Person;
 use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
+use Illuminate\Contracts\View\View;
 
 class PersonController extends Controller
 {
     /**
      * Display a listing of the resource.
+     *
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
-        //
+        return view('system.person.index', [
+            'people' => Person::all(),
+        ]);
     }
 
     /**
