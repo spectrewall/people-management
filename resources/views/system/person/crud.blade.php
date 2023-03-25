@@ -20,7 +20,7 @@
                             label="Nome"
                             id="input-name"
                             name="name"
-                            :value="isset($person) ? $person->name : old('name')"
+                            :value="old('name') ?? $person->name ?? null"
                             :required="true"
                             :errors="$errors"/>
 
@@ -28,7 +28,7 @@
                             label="CPF"
                             id="input-cpf"
                             name="cpf"
-                            :value="isset($person) ? $person->cpf : old('cpf')"
+                            :value="old('cpf') ?? $person->cpf ?? null"
                             :required="true"
                             :errors="$errors"/>
 
@@ -37,7 +37,7 @@
                             id="input-email"
                             name="email"
                             type="email"
-                            :value="isset($person) ? $person->email : old('email')"
+                            :value="old('email') ?? $person->email ?? null"
                             :required="true"
                             :errors="$errors"/>
 
@@ -45,7 +45,7 @@
                             label="Celular"
                             id="input-phone"
                             name="phone"
-                            :value="isset($person) ? $person->phone : old('phone')"
+                            :value="old('phone') ?? $person->phone ?? null"
                             :errors="$errors"/>
 
                         <x-custom.text-input
@@ -53,39 +53,42 @@
                             id="input-birth-date"
                             name="birth_date"
                             type="date"
-                            :value="isset($person) ? $person->birth_date : old('birth_date')"
+                            :value="old('birth_date') ?? $person->birth_date ?? null"
                             :errors="$errors"/>
 
                         <x-custom.text-input
                             label="Rua"
                             id="input-street"
-                            name="address.street"
-                            :value="isset($person) ? $person->address->street : old('address.street')"
+                            name="address[street]"
+                            errorName="address.street"
+                            :value="old('address.street') ?? $person->address->street ?? null"
                             :required="true"
                             :errors="$errors"/>
 
                         <x-custom.text-input
                             label="Cidade"
                             id="input-city"
-                            name="address.city"
-                            :value="isset($person) ? $person->address->city : old('address.city')"
+                            name="address[city]"
+                            errorName="address.city"
+                            :value="old('address.city') ?? $person->address->city ?? null"
                             :required="true"
                             :errors="$errors"/>
 
                         <x-custom.text-input
                             label="Estado"
                             id="input-state"
-                            name="address.state"
-                            :value="isset($person) ? $person->address->state : old('address.state')"
+                            name="address[state]"
+                            errorName="address.state"
+                            :value="old('address.state') ?? $person->address->state ?? null"
                             :required="true"
                             :errors="$errors"/>
 
                         <x-custom.text-input
                             label="Número"
                             id="input-number"
-                            name="address.number"
-                            :value="isset($person) ? $person->address->number : old('address.number')"
-                            :required="true"
+                            name="address[number]"
+                            errorName="address.number"
+                            :value="old('address.number') ?? $person->address->number ?? null"
                             :errors="$errors"/>
 
                         <x-custom.submit-button style="display: block"/>
