@@ -24,7 +24,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Person
     Route::get('/pessoas', [PersonController::class, 'index'])->name('person.index');
-    Route::resource('pessoa', PersonController::class)->except(['index'])->names('person');
+
+    Route::resource('pessoa', PersonController::class)
+        ->except(['index'])
+        ->parameters(['pessoa' => 'id'])
+        ->names('person');
 });
 
 Route::middleware('auth')->group(function () {
