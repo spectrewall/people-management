@@ -49,10 +49,19 @@ class PersonController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param PersonRequest $request
+     * @return RedirectResponse
+     * @throws Throwable
      */
-    public function store(PersonRequest $request)
+    public function store(PersonRequest $request): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $person = $this->personService->create($data);
+
+        return redirect()
+            ->route('person.edit', $person->id)
+            ->with('success', 'Pessoa cadastrada com sucesso!');
     }
 
     /**
