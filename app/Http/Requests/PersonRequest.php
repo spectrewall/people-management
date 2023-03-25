@@ -2,8 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Person;
-use Illuminate\Contracts\Validation\Rule;
+use App\Models\Address;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PersonRequest extends FormRequest
@@ -19,14 +18,18 @@ class PersonRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, Rule|array|string>
+     * @return array<string, array|string>
      */
     public function rules(): array
     {
         $id = $this->route('id');
         $idToIgnore = isset($id) ? ",$id" : '';
 
-        return [
+        $addressRules = collect(Address::rules())
+            ->mapWithKeys(fn ($value, $key) => ["address.$key" => $value])
+            ->toArray();
+
+        return array_merge($addressRules, [
             'name' => [
                 'required',
                 'string',
@@ -57,6 +60,6 @@ class PersonRequest extends FormRequest
                 'date_format:Y-m-d',
                 'before_or_equal:today'
             ]
-        ];
+        ]);
     }
 }
