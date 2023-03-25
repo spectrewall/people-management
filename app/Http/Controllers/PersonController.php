@@ -47,9 +47,13 @@ class PersonController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Person $person)
+    public function edit(int $id): View
     {
-        //
+        return view('system.person.crud', [
+            'titleVerb' => 'Editar',
+            'formAction' => route('person.update', $id),
+            'person' => Person::find($id),
+        ]);
     }
 
     /**
