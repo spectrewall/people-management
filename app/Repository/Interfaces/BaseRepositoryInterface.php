@@ -21,4 +21,13 @@ interface BaseRepositoryInterface
      * @return Model
      */
     public function findOrFail(int $id): Model;
+
+    /**
+     * Updates a model in the database.
+     *
+     * @param array $attributes
+     * @param int|string|Model $modelOrId
+     * @return Model
+     */
+    public function update(array $attributes, int|string|Model $modelOrId): Model;
 }
