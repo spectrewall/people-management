@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Models\Address;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PersonRequest extends FormRequest
@@ -61,5 +62,31 @@ class PersonRequest extends FormRequest
                 'before_or_equal:today'
             ]
         ]);
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return Validator
+    */
+    protected function getValidatorInstance(): Validator
+    {
+        $this->merge([
+            'phone' => self::onlyNumbers($this->input('phone')),
+            'cpf' => self::onlyNumbers($this->input('cpf'))
+        ]);
+
+        return parent::getValidatorInstance();
+    }
+
+    /**
+     * Returns only the numbers from a string.
+     *
+     * @param string $string
+     * @return string
+     */
+    private static function onlyNumbers(string $string): string
+    {
+        return preg_replace('/\D+/', '', $string);
     }
 }

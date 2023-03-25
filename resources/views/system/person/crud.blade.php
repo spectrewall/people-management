@@ -103,4 +103,13 @@
             </div>
         </div>
     </div>
+
+    <x-slot name="scripts">
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                $('#input-cpf').mask('000.000.000-00', {reverse: true});
+                $('#input-phone').mask('(00) 00000-0000');
+            }, false);
+        </script>
+    </x-slot>
 </x-app-layout>
