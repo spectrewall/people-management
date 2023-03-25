@@ -16,6 +16,24 @@ class PersonService
     }
 
     /**
+     * Create a resource in storage.
+     *
+     * @param array $attributes
+     * @return Person
+     * @throws Throwable
+     */
+    public function create(array $attributes): Person
+    {
+        $addressAttributes = $attributes['address'] ?? [];
+
+        return DB::transaction(function () use ($attributes, $addressAttributes) {
+            $address =$this->addressService->create($addressAttributes);
+            $attributes['address_id'] = $address->id;
+            return $this->personRepository->create($attributes);
+        });
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param array $attributes
