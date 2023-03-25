@@ -34,4 +34,8 @@
             </main>
         </div>
     </body>
+
+    @if (isset($scripts))
+        {{ $scripts }}
+    @endif
 </html>
