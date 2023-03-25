@@ -15,6 +15,20 @@ class AddressService
     }
 
     /**
+     * Create a resource in storage.
+     *
+     * @param array $attributes
+     * @return Address
+     * @throws Throwable
+     */
+    public function create(array $attributes): Address
+    {
+        return DB::transaction(function () use ($attributes) {
+            return $this->addressRepository->create($attributes);
+        });
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param array $attributes
