@@ -2,18 +2,18 @@
 
 namespace App\Repository;
 
-use App\Models\User;
+use App\Models\Person;
 use App\Repository\Interfaces\PersonRepositoryInterface;
 use JetBrains\PhpStorm\Pure;
 
 class PersonRepository extends BaseRepository implements PersonRepositoryInterface
 {
     /**
-     * @param User $user
+     * @param Person $person
      */
     #[Pure]
-    public function __construct(User $user)
+    public function __construct(Person $person)
     {
-        parent::__construct($user);
+        parent::__construct($person);
     }
 }
