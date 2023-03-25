@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PersonRequest;
 use App\Models\Person;
 use App\Repository\Interfaces\PersonRepositoryInterface;
+use App\Services\PersonService;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Throwable;
 
 class PersonController extends Controller
 {
     /**
      * @param PersonRepositoryInterface $personRepository
+     * @param PersonService $personService
      */
     public function __construct(
-        private readonly PersonRepositoryInterface $personRepository
+        private readonly PersonRepositoryInterface $personRepository,
+        private readonly PersonService $personService
     ) {
     }
 
@@ -67,10 +72,20 @@ class PersonController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param PersonRequest $request
+     * @param int $id
+     * @return RedirectResponse
+     * @throws Throwable
      */
-    public function update(PersonRequest $request, Person $person)
+    public function update(PersonRequest $request, int $id): RedirectResponse
     {
-        //
+        $data = $request->validated();
+        $person = $this->personService->update($data, $id);
+
+        return redirect()
+            ->route('person.edit', $person->id)
+            ->with('success', 'Pessoa atualizada com sucesso!');
     }
 
     /**
