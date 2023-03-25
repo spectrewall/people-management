@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('cpf')->unique();
-            $table->string('phone');
-            $table->date('birth_date');
+            $table->string('phone')->nullable();
+            $table->date('birth_date')->nullable();
             $table->foreignId('address_id')->constrained('addresses')->onDelete('cascade');
             $table->timestamps();
         });
