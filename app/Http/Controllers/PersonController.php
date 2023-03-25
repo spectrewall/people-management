@@ -107,9 +107,20 @@ class PersonController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     *
+     * @param int $id
+     * @return RedirectResponse
      */
-    public function destroy(Person $person)
+    public function destroy(int $id): RedirectResponse
     {
-        //
+        if ($this->personRepository->destroy($id)) {
+            return redirect()
+                ->route('person.index')
+                ->with('success', 'Pessoa excluída com sucesso!');
+        }
+
+        return redirect()
+            ->route('person.index')
+            ->with('error', 'Não foi possível excluir a pessoa!');
     }
 }
