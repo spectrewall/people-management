@@ -67,23 +67,47 @@
                             :required="true"
                             :errors="$errors"/>
 
-                        <x-custom.text-input
-                            label="Cidade"
-                            id="input-city"
-                            name="address[city]"
-                            errorName="address.city"
-                            :value="old('address.city') ?? $person->address->city ?? null"
-                            :required="true"
-                            :errors="$errors"/>
-
-                        <x-custom.text-input
+                        <x-custom.selector-input-from-api
                             label="Estado"
                             id="input-state"
                             name="address[state]"
                             errorName="address.state"
-                            :value="old('address.state') ?? $person->address->state ?? null"
                             :required="true"
-                            :errors="$errors"/>
+                            :errors="$errors"
+                            defaultPlaceholder="Selecione um estado"
+                            :currentSelected="[
+                                'value' => old('address.state') ?? $person->address->state ?? null,
+                                'text' => old('address.state') ?? $person->address->state ?? null
+                            ]"
+                            apiUrl="https://servicodados.ibge.gov.br/api/v1/localidades/estados"
+                            apiValue="sigla"
+                            apiText="nome"
+                            :enablesElementOnSelect="['input-city']"/>
+
+                        <x-custom.selector-input-from-api
+                            :disableIfEmpty="true"
+                            label="Cidade"
+                            id="input-city"
+                            name="address[city]"
+                            errorName="address.city"
+                            :required="true"
+                            :errors="$errors"
+                            defaultPlaceholder="Selecione uma cidade"
+                            :currentSelected="[
+                                'value' => old('address.city') ?? $person->address->city ?? null,
+                                'text' => old('address.city') ?? $person->address->city ?? null
+                            ]"
+                            apiUrl="https://servicodados.ibge.gov.br/api/v1/localidades/estados/{uf}/municipios"
+                            apiValue="nome"
+                            apiText="nome"
+                            :apiReplaces="[
+                                'uf' => [
+                                    'id' => 'input-state',
+                                    'property' => 'value',
+                                    'default' => old('address.state') ?? $person->address->state ?? null
+                                ]
+                            ]"
+                            :reloadOnElementChange="['input-state']"/>
 
                         <x-custom.text-input
                             label="Número"
